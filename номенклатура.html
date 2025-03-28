@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контурная карта России - 8 класс</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+        .map-title {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            z-index: 1000;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            font-weight: bold;
+        }
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            font-size: 12px;
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="map-title">Контурная карта России. Номенклатура 8 класс</div>
+    <div id="map"></div>
+    <div class="legend">
+        <div><i style="background: #e41a1c;"></i> Горы</div>
+        <div><i style="background: #377eb8;"></i> Возвышенности</div>
+        <div><i style="background: #4daf4a;"></i> Равнины</div>
+        <div><i style="background: #984ea3;"></i> Низменности</div>
+        <div><i style="background: #ff7f00;"></i> Месторождения</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Инициализация карты
+        const map = L.map('map').setView([62, 94], 3);
+
+        // Добавление контурной карты
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Функция для создания маркеров с подсказками
+        function createMarker(lat, lng, title, category) {
+            let color;
+            switch(category) {
+                case 'горы': color = '#e41a1c'; break;
+                case 'возвышенности': color = '#377eb8'; break;
+                case 'равнины': color = '#4daf4a'; break;
+                case 'низменности': color = '#984ea3'; break;
+                case 'месторождения': color = '#ff7f00'; break;
+                default: color = '#000000';
+            }
+
+            const marker = L.circleMarker([lat, lng], {
+                radius: 6,
+                fillColor: color,
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
+
+            marker.bindTooltip(title, {permanent: false, direction: 'top'});
+        }
+
+        // Горы
+        createMarker(67.73, 33.72, 'Хибины', 'горы');
+        createMarker(42.5, 44, 'Большой Кавказ', 'горы');
+        createMarker(42.69, 44.52, 'Казбек', 'горы');
+        createMarker(43.35, 42.44, 'Эльбрус', 'горы');
+        createMarker(60, 59, 'Урал', 'горы');
+        createMarker(65.05, 60.12, 'Народная', 'горы');
+        createMarker(54.25, 58.1, 'Ямантау', 'горы');
+        createMarker(53.45, 59.15, 'Магнитная', 'горы');
+        createMarker(58.75, 59.5, 'Качканар', 'горы');
+        createMarker(50, 86, 'Алтай', 'горы');
+        createMarker(49.81, 86.59, 'Белуха', 'горы');
+        createMarker(54.5, 85.5, 'Салаирский кряж', 'горы');
+        createMarker(54.7, 88.3, 'Кузнецкий Алатау', 'горы');
+        createMarker(52, 96, 'Западный Саян', 'горы');
+        createMarker(52, 98, 'Восточный Саян', 'горы');
+        createMarker(75, 112, 'Бырранга', 'горы');
+        createMarker(59, 93, 'Енисейский кряж', 'горы');
+        createMarker(56, 116, 'Становое нагорье', 'горы');
+        createMarker(58, 125, 'Алданское нагорье', 'горы');
+        createMarker(57, 116, 'Витимское плоскогорье', 'горы');
+        createMarker(56, 126, 'Становой хребет', 'горы');
+        createMarker(67, 129, 'Верхоянский хребет', 'горы');
+        createMarker(64, 142, 'хребет Черского', 'горы');
+        createMarker(68, 178, 'Чукотское нагорье', 'горы');
+        createMarker(58, 136, 'Джугджур', 'горы');
+        createMarker(47, 136, 'Сихотэ-Алинь', 'горы');
+        createMarker(56.06, 160.64, 'Ключевская Сопка', 'горы');
+        createMarker(53.26, 158.83, 'Авачинская Сопка', 'горы');
+        createMarker(56.65, 161.36, 'Шивелуч', 'горы');
+
+        // Возвышенности
+        createMarker(52, 37, 'Среднерусская', 'возвышенности');
+        createMarker(53, 48, 'Приволжская', 'возвышенности');
+        createMarker(65, 95, 'Среднесибирское плоскогорье', 'возвышенности');
+        createMarker(69, 93, 'плато Путорана', 'возвышенности');
+        createMarker(63, 50, 'Тиманский кряж', 'возвышенности');
+        createMarker(60, 50, 'Северные Увалы', 'возвышенности');
+        createMarker(57.5, 33.5, 'Валдайская', 'возвышенности');
+        createMarker(45, 42, 'Ставропольская', 'возвышенности');
+        createMarker(62, 75, 'Сибирские Увалы', 'возвышенности');
+
+        // Равнины
+        createMarker(55, 40, 'Восточно-Европейская (Русская)', 'равнины');
+        createMarker(60, 75, 'Западно-Сибирская', 'равнины');
+        createMarker(51, 41, 'Окско-Донская', 'равнины');
+        createMarker(56, 69, 'Ишимская', 'равнины');
+        createMarker(55, 78, 'Барабинская', 'равнины');
+        createMarker(50, 130, 'Зейско-Буреинская', 'равнины');
+        createMarker(62, 129, 'Центрально-Якутская', 'равнины');
+
+        // Низменности
+        createMarker(71, 140, 'Яно-Индигирская', 'низменности');
+        createMarker(69, 158, 'Колымская', 'низменности');
+        createMarker(48, 134, 'Средне-Амурская', 'низменности');
+        createMarker(45.5, 44.5, 'Кумо-Манычская впадина', 'низменности');
+        createMarker(47, 49, 'Прикаспийская', 'низменности');
+        createMarker(65, 54, 'Печорская', 'низменности');
+        createMarker(55, 40.5, 'Мещерская', 'низменности');
+        createMarker(51, 41, 'Окско-Донская', 'низменности');
+        createMarker(45.5, 39.5, 'Прикубанская', 'низменности');
+        createMarker(54, 87, 'Кузнецкая котловина', 'низменности');
+        createMarker(70, 90, 'Северо-Сибирская', 'низменности');
+        createMarker(53.5, 91.5, 'Минусинская котловина', 'низменности');
+        createMarker(51.5, 94.5, 'Тувинская котловина', 'низменности');
+
+        // Месторождения
+        createMarker(67, 57, 'Печорский угольный бассейн', 'месторождения');
+        createMarker(51, 37, 'КМА', 'месторождения');
+        createMarker(54, 38, 'Подмосковный буроугольный бассейн', 'месторождения');
+        createMarker(48.2, 46.8, 'Баскунчак (соли)', 'месторождения');
+        createMarker(61, 76, 'Западно-Сибирский нефтегазоносный бассейн', 'месторождения');
+        createMarker(54.5, 86.5, 'Кузбас', 'месторождения');
+        createMarker(53, 87.5, 'Горная Шория (железные руды)', 'месторождения');
+        createMarker(48, 39, 'Донбас', 'месторождения');
+        createMarker(67.73, 33.72, 'Хибины (апатиты)', 'месторождения');
+        createMarker(56.5, 95.5, 'Канско-Ачинский', 'месторождения');
+        createMarker(60, 114, 'Ленский', 'месторождения');
+        createMarker(65, 98, 'Тунгусский', 'месторождения');
+        createMarker(58, 124, 'Южно-Якутский угольные бассейны', 'месторождения');
+        createMarker(56.5, 118, 'Удоканское (медь)', 'месторождения');
+        createMarker(58.5, 125, 'Алдан и Бодайбо (золото)', 'месторождения');
+        createMarker(62.5, 113.9, 'Мирный (алмазы)', 'месторождения');
+    </script>
+</body>
+</html>
